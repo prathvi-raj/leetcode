@@ -266,3 +266,30 @@ class Q16 {
 }
 
 //Q16().run()
+
+
+class Q17 {
+
+    func run() {
+        let d = DispatchQueue(label: "a.b.c")
+
+        print("0")
+        d.async {
+            print("1")
+            print("100")
+        }
+        print("2")
+        d.async {
+            print("3")
+            print("300")
+        }
+        print("4")
+        d.async {
+            print("5")
+            print("500")
+        }
+        print("6")
+    }
+}
+
+//Q17().run()
