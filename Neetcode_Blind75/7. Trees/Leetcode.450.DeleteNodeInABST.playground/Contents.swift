@@ -84,3 +84,50 @@ class Solution {
     }
 }
 
+class Solution1 {
+    func deleteNode(_ root: TreeNode?, _ key: Int) -> TreeNode? {
+        guard let root = root else {
+            return nil
+        }
+        // search for the node to delete
+        if key > root.val {
+            root.right = deleteNode(root.right, key)
+        } else if key < root.val {
+            root.left = deleteNode(root.left, key)
+        } else {
+            // we found a node we want to delete
+            // There are few cases which we need to handle
+            // 1. If the node we want to delete has no leaves
+            //    or just one, then we can return left or right node
+            //    which will replace it.
+            if root.left == nil {
+                return root.right
+            } else if root.right == nil {
+                return root.left
+            } else {
+            // 2. The node we want to delete is a parent node
+            //    We have to find the smallest node from the right side,
+            //    which will traverse to the smallest minNode
+            //    then traverse to the bottom again and delete it
+            //    to avoid duplicate node.
+                let minNode = minNode(root.right)
+                root.val = minNode!.val
+                root.right = deleteNode(root.right, minNode!.val)
+            }
+        }
+
+        // Go back to the top of the tree with updated nodes
+        return root
+    }
+
+    // Find the smallest node
+    func minNode(_ root: TreeNode?) -> TreeNode? {
+        var curr = root
+
+        while curr != nil && curr?.left != nil {
+            curr = curr?.left
+        }
+
+        return curr
+    }
+}
