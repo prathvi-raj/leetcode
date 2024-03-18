@@ -44,6 +44,19 @@ import Foundation
 
  */
 
+/*
+
+ The solution provided uses a two-pointer approach where a low pointer and a high pointer are initialized at the start and end of the array respectively.
+
+ Then, a while loop is used to iterate through the array, and in each iteration, the sum of the values at the low and high pointers is computed. If the sum is equal to the target, the indices of the numbers are returned as an integer array. If the sum is less than the target, the low pointer is incremented to move towards larger values, and if the sum is greater than the target, the high pointer is decremented to move towards smaller values.
+
+ This approach works because the array is sorted, and by moving the low and high pointers based on the sum of their values, we can find the two numbers that add up to the target. Since the problem statement guarantees that there is exactly one solution, the while loop will always terminate with the correct indices being returned.
+
+ Complexity
+ This solution has a time complexity of O(n)O(n)O(n) since we only make a single pass through the array, and a space complexity of O(1)O(1)O(1) since we are only using a constant amount of extra space to store the low and high pointers.
+
+ */
+
 class Solution {
     func twoSum(_ numbers: [Int], _ target: Int) -> [Int] {
 
